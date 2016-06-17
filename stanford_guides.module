@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Stanford Guides feature.
+ */
+
+include_once 'stanford_guides.features.inc';
