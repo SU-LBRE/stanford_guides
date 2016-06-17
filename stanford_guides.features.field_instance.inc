@@ -34,7 +34,7 @@ function stanford_guides_field_default_field_instances() {
           'custom_ucwords' => '',
         ),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -155,57 +155,6 @@ function stanford_guides_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stanford_guides-field_s_guides_owner'
-  $field_instances['node-stanford_guides-field_s_guides_owner'] = array(
-    'bundle' => 'stanford_guides',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Select the appropriate department that owns this guideline/policy.',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(
-          'custom_link_to_entity' => '',
-          'custom_prefix' => '',
-          'custom_reverse' => '',
-          'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
-          'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
-        ),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_s_guides_owner',
-    'label' => 'Owner',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => 1,
-      ),
-      'type' => 'options_select',
-      'weight' => 43,
-    ),
-  );
-
   // Exported field_instance: 'node-stanford_guides-field_s_guides_relates_to'
   $field_instances['node-stanford_guides-field_s_guides_relates_to'] = array(
     'bundle' => 'stanford_guides',
@@ -215,22 +164,24 @@ function stanford_guides_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'taxonomy',
+        'module' => 'ds',
         'settings' => array(
-          'custom_link_to_entity' => '',
+          'custom_link_to_entity' => 0,
           'custom_prefix' => '',
-          'custom_reverse' => '',
+          'custom_reverse' => 0,
           'custom_strip_preserve' => '',
-          'custom_strip_tags' => '',
-          'custom_strtolower' => '',
-          'custom_strtoupper' => '',
+          'custom_strip_tags' => 0,
+          'custom_strtolower' => 0,
+          'custom_strtoupper' => 0,
           'custom_suffix' => '',
-          'custom_trim' => '',
-          'custom_ucfirst' => '',
-          'custom_ucwords' => '',
+          'custom_trim' => 0,
+          'custom_ucfirst' => 0,
+          'custom_ucwords' => 0,
+          'taxonomy_term_link' => 0,
+          'taxonomy_term_separator' => ', ',
         ),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 5,
+        'type' => 'ds_taxonomy_separator',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -306,16 +257,68 @@ function stanford_guides_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'node-stanford_guides-field_stanford_subsite_sub_tags'
+  $field_instances['node-stanford_guides-field_stanford_subsite_sub_tags'] = array(
+    'bundle' => 'stanford_guides',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Enter the value of the subsite.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(
+          'custom_link_to_entity' => '',
+          'custom_prefix' => '',
+          'custom_reverse' => '',
+          'custom_strip_preserve' => '',
+          'custom_strip_tags' => '',
+          'custom_strtolower' => '',
+          'custom_strtoupper' => '',
+          'custom_suffix' => '',
+          'custom_trim' => '',
+          'custom_ucfirst' => '',
+          'custom_ucwords' => '',
+        ),
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_stanford_subsite_sub_tags',
+    'label' => 'Subsite Tags',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+        'size' => 60,
+      ),
+      'type' => 'options_select',
+      'weight' => 45,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('Enter a short lead sentence for this landing page. The maximum length of characters in this field is 255.');
+  t('Enter the value of the subsite.');
   t('Lead Text');
-  t('Owner');
   t('Relates To');
-  t('Select the appropriate department that owns this guideline/policy.');
   t('Select the appropriate department(s) that also use this guideline/policy.');
   t('Select the appropriate topic for this guideline/policy.');
+  t('Subsite Tags');
   t('Topic');
 
   return $field_instances;
