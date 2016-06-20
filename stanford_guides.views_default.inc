@@ -245,8 +245,8 @@ function stanford_guides_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'guides';
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
+  /* Display: Topics List Block */
+  $handler = $view->new_display('block', 'Topics List Block', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Topics';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
