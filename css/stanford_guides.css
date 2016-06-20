@@ -1,0 +1,36 @@
+.node-type-stanford-guides .numbered_guide {
+    border-top: 1px solid #e9edee;
+    margin-top: 0.5em;
+    padding-top: 1em;
+    padding-left: 5em;
+}
+
+.node-type-stanford-guides .field-items {
+    counter-reset: section;
+}
+
+.node-type-stanford-guides .field-items .numbered_guide:before {
+    counter-increment: section;
+    content: counter(section);
+    background: #8c1515;
+    color: white;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    -ms-border-radius: 2em;
+    -o-border-radius: 2em;
+    border-radius: 2em;
+    -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+    display: block;
+    font-size: 1.75em;
+    font-weight: 300;
+    height: 1.5em;
+    line-height: 1.5em;
+    padding: 5px;
+    text-align: center;
+    width: 1.5em;
+    float: left;
+    margin-left: -3em;
+    margin-right: 25px;
+}
