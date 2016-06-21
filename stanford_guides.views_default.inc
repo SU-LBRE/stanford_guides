@@ -46,7 +46,7 @@ function stanford_guides_views_default_views() {
   $handler->display->display_options['fields']['field_s_guides_topic']['label'] = '';
   $handler->display->display_options['fields']['field_s_guides_topic']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_s_guides_topic']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_s_guides_topic']['alter']['text'] = '<h2>[field_s_guides_topic]</h2';
+  $handler->display->display_options['fields']['field_s_guides_topic']['alter']['text'] = '<h2>[field_s_guides_topic]</h2>';
   $handler->display->display_options['fields']['field_s_guides_topic']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_guides_topic']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_s_guides_topic']['type'] = 'taxonomy_term_reference_plain';
