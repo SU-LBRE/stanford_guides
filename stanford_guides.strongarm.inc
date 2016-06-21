@@ -121,12 +121,5 @@ function stanford_guides_strongarm() {
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_guides_pattern'] = $strongarm;
 
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_stanford_subsites_sites_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_stanford_subsites_sites_pattern'] = $strongarm;
-
   return $export;
 }
