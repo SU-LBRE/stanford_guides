@@ -36,10 +36,12 @@
 }
 /* Guide badge styles */
 .guide-relates {
-  background-color:#B6B1A9; margin:5px;
+  background-color:#B6B1A9;
+  margin:5px;
 }
 .guide-owner {
-  background-color: #999; margin:5px;
+  background-color: #999;
+  margin:5px;
 }
 .page-node .content-body .field-name-field-s-guides-relates-to {
   margin-bottom: 0px;
