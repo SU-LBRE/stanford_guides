@@ -19,7 +19,7 @@ function stanford_guides_search_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'guidelines-policies-search' => 'guidelines-policies-search',
+        'guidelines-policies' => 'guidelines-policies',
       ),
     ),
   );
