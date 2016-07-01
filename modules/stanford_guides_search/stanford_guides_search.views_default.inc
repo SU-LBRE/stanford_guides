@@ -185,7 +185,7 @@ function stanford_guides_search_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['exposed_block'] = TRUE;
-  $handler->display->display_options['path'] = 'guidelines-policies';
+  $handler->display->display_options['path'] = 'guides/search';
   $export['guides_search'] = $view;
 
   return $export;
