@@ -19,7 +19,8 @@ function stanford_guides_search_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'guides/search' => 'guides/search',
+        'guides-search' => 'guides-search',
+        'guides-search/*' => 'guides-search/*',
         'guides' => 'guides',
       ),
     ),
@@ -27,9 +28,9 @@ function stanford_guides_search_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views--exp-guides_search-page_1' => array(
-          'module' => 'views',
-          'delta' => '-exp-guides_search-page_1',
+        'stanford_guides_search-guides_search' => array(
+          'module' => 'stanford_guides_search',
+          'delta' => 'guides_search',
           'region' => 'sidebar_first',
           'weight' => '-10',
         ),

@@ -5,3 +5,71 @@
  */
 
 include_once 'stanford_guides_search.features.inc';
+include_once 'includes/stanford_guides_search.form.inc';
+  
+/**
+ * Implements hook_menu()..
+ */
+function stanford_guides_search_menu() {
+  $items['guides-search'] = array(
+    'title' => 'Guidelines & Policies',
+    'page callback' => 'stanford_guides_search_results',
+    //'page arguments' => array($arg1, $arg2),
+    'access arguments' => array('access content'),
+    //'acccess callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+* Implements hook_block_info().
+*/
+function stanford_guides_search_block_info() {
+  $blocks = array();
+  $blocks['guides_search'] = array(
+    'info' => t('Guides Search'),
+  );
+  return $blocks;
+}
+
+/**
+* Implements hook_block_view().
+*/
+function stanford_guides_search_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'guides_search':
+      $block['subject'] = '';
+      $block['content'] = _stanford_guides_search_content();
+      break;
+  }
+  return $block;
+}
+
+/**
+* Custom return funtion for guides_search block.
+*/
+function _stanford_guides_search_content() {
+  $output = drupal_get_form('stanford_guides_search_input_form');
+  return $output;
+}
+
+
+function stanford_guides_search_results() {
+  $topic_ids = array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
+  $arg1 = isset($_POST['keyword']) ? $_POST['keyword'] : '';
+  if (isset($_POST['topic'])) {
+    $arg2 = (int) $_POST['topic'];
+  } else {
+    $arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
+  }
+  $view = views_get_view('guides_search');
+  $view->exposed_input['combine'] = $arg1;
+  $view->exposed_input['field_s_guides_topic_tid'] = $arg2;
+  $view->set_display('page_1');
+  $view->is_cacheable = FALSE;
+  $view->execute();
+  $view = $view->render();
+  return $view;
+}
