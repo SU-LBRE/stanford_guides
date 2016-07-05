@@ -8,6 +8,7 @@ function stanford_guides_search_input_form($form, &$form_state) {
   $form['keyword'] = array(
     '#type' => 'textfield',
     '#title' => t('Search By Keyword'),
+    '#default_value' => variable_get('stanford_guides_keyword', ''),
   );
   $form['topic'] = array(
     '#type' => 'select',
@@ -19,15 +20,10 @@ function stanford_guides_search_input_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => 'Go',
   );
-  $form['reset'] = array(
-    '#type' => 'button',
-    '#button_type' => 'reset',
+  $form['options']['reset'] = array(
+    '#type' => 'submit',
     '#value' => t('Reset'),
-    '#weight' => 9,
-    '#validate' => array(),
-    '#attributes' => array(
-      'onclick' => 'this.form.reset(); return false;',
-    ),
+    '#submit' => array('stanford_guides_search_input_form_reset'),
   );
   return $form;
 }
@@ -42,6 +38,16 @@ function stanford_guides_search_input_form_submit($form, &$form_state) {
   $topic = $term->name;
   $topic = strtolower(str_replace(' ', '-', $topic));
   $form_state['redirect'] = 'guides-search/' . $topic;
+}
+
+/**
+ * Add a reset.
+ */
+function stanford_guides_search_input_form_reset($form, &$form_state) {
+  $form_state['rebuild'] = FALSE;
+  variable_set('stanford_guides_keyword', '');
+  $topic_ids= array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
+  variable_set('stanford_guides_topic', array_shift($topic_ids));
 }
 
 

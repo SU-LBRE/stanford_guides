@@ -14,9 +14,7 @@ function stanford_guides_search_menu() {
   $items['guides-search'] = array(
     'title' => 'Guidelines & Policies',
     'page callback' => 'stanford_guides_search_results',
-    //'page arguments' => array($arg1, $arg2),
     'access arguments' => array('access content'),
-    //'acccess callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -58,9 +56,16 @@ function _stanford_guides_search_content() {
 
 function stanford_guides_search_results() {
   $topic_ids = array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
-  $arg1 = isset($_POST['keyword']) ? $_POST['keyword'] : '';
+  dpm($_POST);
+  if (isset($_POST['keyword'])) {
+    $arg1 = $_POST['keyword'];
+    variable_set('stanford_guides_keyword', $arg1);
+  } else {
+    $arg1 = variable_get('stanford_guides_keyword', '');
+  }
   if (isset($_POST['topic'])) {
     $arg2 = (int) $_POST['topic'];
+    variable_set('stanford_guides_topic', $arg2);
   } else {
     $arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
   }
