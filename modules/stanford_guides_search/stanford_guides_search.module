@@ -56,7 +56,6 @@ function _stanford_guides_search_content() {
 
 function stanford_guides_search_results() {
   $topic_ids = array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
-  dpm($_POST);
   if (isset($_POST['keyword'])) {
     $arg1 = $_POST['keyword'];
     variable_set('stanford_guides_keyword', $arg1);
