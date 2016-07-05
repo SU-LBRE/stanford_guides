@@ -8,7 +8,7 @@ function stanford_guides_search_input_form($form, &$form_state) {
   $form['keyword'] = array(
     '#type' => 'textfield',
     '#title' => t('Search By Keyword'),
-    '#default_value' => variable_get('stanford_guides_keyword', ''),
+    '#default_value' => variable_get('stanford_guides_keyword', NULL),
   );
   $form['topic'] = array(
     '#type' => 'select',
