@@ -1,0 +1,14 @@
+name = Stanford Guides Search
+description = Search Functionality for Stanford Guides
+core = 7.x
+package = Stanford
+version = 7.x-1.0
+dependencies[] = context
+dependencies[] = views
+dependencies[] = stanford_guides
+features[context][] = guides_search
+features[ctools][] = context:context:3
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = guides_search
+features_exclude[dependencies][ctools] = ctools
