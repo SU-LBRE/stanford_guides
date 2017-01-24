@@ -42,7 +42,7 @@ function stanford_guides_search_context_default_contexts() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Guides');
-  t('Pplacing exposed filter on guides search');
+  t('Placing exposed filter on guides search');
   $export['guides_search'] = $context;
 
   return $export;

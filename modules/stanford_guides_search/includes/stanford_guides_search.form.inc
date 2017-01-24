@@ -4,6 +4,7 @@
 
 function stanford_guides_search_input_form($form, &$form_state) {
   $topics = taxonomy_allowed_values(field_info_field('field_s_guides_topic'));
+  $topics = array('All' => 'All') + $topics;
   // To make these fields required
   $form['keyword'] = array(
     '#type' => 'textfield',
@@ -15,6 +16,7 @@ function stanford_guides_search_input_form($form, &$form_state) {
     '#title' => t('Filter By Topic'),
     '#options' => $topics,
     '#default_value' => variable_get('stanford_guides_topic', array_shift($topics)),
+    //'#default_value' => variable_get('stanford_guides_topic', $topics)
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -47,7 +49,9 @@ function stanford_guides_search_input_form_reset($form, &$form_state) {
   $form_state['rebuild'] = FALSE;
   variable_set('stanford_guides_keyword', '');
   $topic_ids= array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
+  $topic_ids = array('All' => 'All') + $topic_ids;
   variable_set('stanford_guides_topic', array_shift($topic_ids));
+  drupal_goto('guides-search/');
 }
 
 
