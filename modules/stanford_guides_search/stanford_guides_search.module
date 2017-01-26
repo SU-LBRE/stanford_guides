@@ -24,6 +24,7 @@ function stanford_guides_search_menu() {
 * Implements hook_block_info().
 */
 function stanford_guides_search_block_info() {
+  global $user;
   $blocks = array();
   $blocks['guides_search'] = array(
     'info' => t('Guides Search'),
@@ -46,7 +47,7 @@ function stanford_guides_search_block_view($delta = '') {
 }
 
 /**
-* Custom return funtion for guides_search block.
+* Custom return function for guides_search block.
 */
 function _stanford_guides_search_content() {
   $output = drupal_get_form('stanford_guides_search_input_form');

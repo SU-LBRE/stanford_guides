@@ -51,7 +51,8 @@ function stanford_guides_search_input_form_reset($form, &$form_state) {
   $topic_ids= array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
   $topic_ids = array('All' => 'All') + $topic_ids;
   variable_set('stanford_guides_topic', array_shift($topic_ids));
-  drupal_goto('guides-search/');
+  $arg0 = arg(0);
+  drupal_goto($arg0 . '/');
 }
 
 
