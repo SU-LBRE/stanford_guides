@@ -73,7 +73,9 @@ function stanford_guides_search_results() {
   }
   $view = views_get_view('guides_search');
   $view->exposed_input['combine'] = $arg1;
-  $view->exposed_input['field_s_guides_topic_tid'] = $arg2;
+  if ($arg2 != 'All') {
+    $view->exposed_input['field_s_guides_topic_tid'] = $arg2;
+  }
   $view->set_display('page_1');
   $view->is_cacheable = FALSE;
   $view->execute();
