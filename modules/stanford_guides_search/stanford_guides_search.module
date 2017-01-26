@@ -68,14 +68,12 @@ function stanford_guides_search_results() {
     $arg2 = $_POST['topic'];
     variable_set('stanford_guides_topic', $arg2);
   } else {
-    //$arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
-    $arg2 = variable_get('stanford_guides_topic', $topic_ids);
+    $arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
+    //$arg2 = variable_get('stanford_guides_topic', $topic_ids);
   }
   $view = views_get_view('guides_search');
   $view->exposed_input['combine'] = $arg1;
-  if ($arg2 != 'All') {
-    $view->exposed_input['field_s_guides_topic_tid'] = $arg2;
-  }
+  $view->exposed_input['field_s_guides_topic_tid'] = $arg2;
   $view->set_display('page_1');
   $view->is_cacheable = FALSE;
   $view->execute();
