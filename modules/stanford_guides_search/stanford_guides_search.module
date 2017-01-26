@@ -77,6 +77,6 @@ function stanford_guides_search_results() {
   $view->set_display('page_1');
   $view->is_cacheable = FALSE;
   $view->execute();
-  $view = $view->render();
+  $view = $view->preview();
   return $view;
 }
