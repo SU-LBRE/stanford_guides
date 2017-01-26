@@ -24,6 +24,7 @@ function stanford_guides_search_menu() {
 * Implements hook_block_info().
 */
 function stanford_guides_search_block_info() {
+  global $user;
   $blocks = array();
   $blocks['guides_search'] = array(
     'info' => t('Guides Search'),
@@ -46,7 +47,7 @@ function stanford_guides_search_block_view($delta = '') {
 }
 
 /**
-* Custom return funtion for guides_search block.
+* Custom return function for guides_search block.
 */
 function _stanford_guides_search_content() {
   $output = drupal_get_form('stanford_guides_search_input_form');
@@ -56,6 +57,7 @@ function _stanford_guides_search_content() {
 
 function stanford_guides_search_results() {
   $topic_ids = array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
+  $topic_ids = array('All' => 'All') + $topic_ids;
   if (isset($_POST['keyword'])) {
     $arg1 = $_POST['keyword'];
     variable_set('stanford_guides_keyword', $arg1);
@@ -63,10 +65,11 @@ function stanford_guides_search_results() {
     $arg1 = variable_get('stanford_guides_keyword', '');
   }
   if (isset($_POST['topic'])) {
-    $arg2 = (int) $_POST['topic'];
+    $arg2 = $_POST['topic'];
     variable_set('stanford_guides_topic', $arg2);
   } else {
     $arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
+    //$arg2 = variable_get('stanford_guides_topic', $topic_ids);
   }
   $view = views_get_view('guides_search');
   $view->exposed_input['combine'] = $arg1;
@@ -74,6 +77,6 @@ function stanford_guides_search_results() {
   $view->set_display('page_1');
   $view->is_cacheable = FALSE;
   $view->execute();
-  $view = $view->render();
+  $view = $view->preview();
   return $view;
 }
