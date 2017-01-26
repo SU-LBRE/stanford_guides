@@ -36,9 +36,14 @@ function stanford_guides_search_input_form($form, &$form_state) {
 function stanford_guides_search_input_form_submit($form, &$form_state) {
   variable_set('stanford_guides_topic', $_POST['topic']);
   $form_state['rebuild'] = FALSE;
-  $term = taxonomy_term_load($_POST['topic']);
-  $topic = $term->name;
-  $topic = strtolower(str_replace(' ', '-', $topic));
+  if ($_POST['topic'] != 'All') {
+    $term = taxonomy_term_load($_POST['topic']);
+    $topic = $term->name;
+    $topic = strtolower(str_replace(' ', '-', $topic));
+  }
+  else {
+    $topic = 'All';
+  }
   $form_state['redirect'] = 'guides-search/' . $topic;
 }
 
