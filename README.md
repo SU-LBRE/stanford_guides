@@ -1,7 +1,8 @@
 #[Stanford Guides](https://github.com/SU-LBRE/stanford_guides)
 ##### Version: 7.x-1.x
 
-Maintainers: [cynmij](https://github.com/cynmij), [nickmanning](https://github.com/nickmanning)
+Maintainers: [cynmij](https://github.com/cynmij), [nickmanning](https://github.com/nickmanning), [boznik](https://github.com/boznik)
+
 [Changelog.txt](CHANGELOG.txt)
 
 The Stanford Module feature is used to ...
