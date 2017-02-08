@@ -28,6 +28,7 @@ function stanford_guides_search_block_info() {
   $blocks = array();
   $blocks['guides_search'] = array(
     'info' => t('Guides Search'),
+    'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
@@ -79,4 +80,15 @@ function stanford_guides_search_results() {
   $view->execute();
   $view = $view->preview();
   return $view;
+}
+
+/**
+* Implements hook_form_alter().
+*/
+function stanford_guides_search_form_alter(&$form, &$form_state, $form_id) {
+  if ($_GET['q'] == 'guides' && $form_id == 'stanford_guides_search_input_form') {
+    $form['#attached']['js'] = array(
+      drupal_get_path('module', 'stanford_guides') . '/modules/stanford_guides_search/js/stanford_guides_search.js',
+    );
+  }
 }
