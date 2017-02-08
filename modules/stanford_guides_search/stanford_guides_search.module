@@ -101,5 +101,5 @@ function stanford_guides_search_user_logout($account) {
   variable_set('stanford_guides_keyword', '');
   variable_set('stanford_guides_topic', 'All');
   session_destroy();
-  drupal_goto('home');
+  drupal_goto('<front>');
 }
