@@ -100,4 +100,6 @@ function stanford_guides_search_user_logout($account) {
   //Reset variables to default when the user logs out.
   variable_set('stanford_guides_keyword', '');
   variable_set('stanford_guides_topic', 'All');
+  session_destroy();
+  drupal_goto('home');
 }
