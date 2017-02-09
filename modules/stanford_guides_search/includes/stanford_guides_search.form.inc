@@ -1,7 +1,5 @@
 <?php
 
-
-
 function stanford_guides_search_input_form($form, &$form_state) {
   $topics = taxonomy_allowed_values(field_info_field('field_s_guides_topic'));
   $topics = array('All' => 'All') + $topics;
@@ -34,6 +32,9 @@ function stanford_guides_search_input_form($form, &$form_state) {
  * Add a submit handler/function to the form.
  */
 function stanford_guides_search_input_form_submit($form, &$form_state) {
+  if (isset($_POST['keyword'])) {
+    variable_set('stanford_guides_keyword', $_POST['keyword']);
+  }
   variable_set('stanford_guides_topic', $_POST['topic']);
   $form_state['rebuild'] = FALSE;
   if ($_POST['topic'] != 'All') {
@@ -56,8 +57,7 @@ function stanford_guides_search_input_form_reset($form, &$form_state) {
   $topic_ids= array_keys(taxonomy_allowed_values(field_info_field('field_s_guides_topic')));
   $topic_ids = array('All' => 'All') + $topic_ids;
   variable_set('stanford_guides_topic', array_shift($topic_ids));
-  $arg0 = arg(0);
-  drupal_goto($arg0 . '/');
+  drupal_goto('guides/');
 }
 
 
