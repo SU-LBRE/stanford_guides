@@ -74,7 +74,7 @@ function stanford_guides_search_results() {
   } else {
     ////$arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
     //$arg2 = variable_get('stanford_guides_topic', $topic_ids);
-    $arg2 = 'All';
+    $arg2 = isset($_COOKIE['stanford_guides_topic']) ? $_COOKIE['stanford_guides_topic'] : 'All';
   }
   $view = views_get_view('guides_search');
   $view->exposed_input['combine'] = $arg1;
