@@ -111,7 +111,7 @@ function stanford_guides_search_user_logout($account) {
 }
 
 /**
-* Implements hook_preprocess_page().
+* Implements hook_page_build().
 */
 function stanford_guides_search_page_build(&$page) {
   if ($_GET['q'] == 'guides') {
