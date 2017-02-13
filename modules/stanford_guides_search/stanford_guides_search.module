@@ -61,16 +61,20 @@ function stanford_guides_search_results() {
   $topic_ids = array('All' => 'All') + $topic_ids;
   if (isset($_POST['keyword'])) {
     $arg1 = $_POST['keyword'];
-    variable_set('stanford_guides_keyword', $arg1);
-  } else {
-    $arg1 = variable_get('stanford_guides_keyword', '');
+    //variable_set('stanford_guides_keyword', $arg1);
+    setcookie('stanford_guides_keyword', $_POST['keyword'], time() + (60 * 60 * 24 * 30 * 12), '/');
+  }
+  else {
+    $arg1 = isset($_COOKIE['stanford_guides_keyword']) ? $_COOKIE['stanford_guides_keyword'] : '';
   }
   if (isset($_POST['topic'])) {
     $arg2 = $_POST['topic'];
-    variable_set('stanford_guides_topic', $arg2);
+    //variable_set('stanford_guides_topic', $arg2);
+    setcookie('stanford_guides_topic', $_POST['topic'], time() + (60 * 60 * 24 * 30 * 12), '/');
   } else {
-    //$arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
-    $arg2 = variable_get('stanford_guides_topic', $topic_ids);
+    ////$arg2 = variable_get('stanford_guides_topic', array_shift($topic_ids));
+    //$arg2 = variable_get('stanford_guides_topic', $topic_ids);
+    $arg2 = isset($_COOKIE['stanford_guides_topic']) ? $_COOKIE['stanford_guides_topic'] : 'All';
   }
   $view = views_get_view('guides_search');
   $view->exposed_input['combine'] = $arg1;
@@ -98,8 +102,20 @@ function stanford_guides_search_form_alter(&$form, &$form_state, $form_id) {
 */
 function stanford_guides_search_user_logout($account) {
   //Reset variables to default when the user logs out.
-  variable_set('stanford_guides_keyword', '');
-  variable_set('stanford_guides_topic', 'All');
-  session_destroy();
+  //variable_set('stanford_guides_keyword', '');
+  //variable_set('stanford_guides_topic', 'All');
+  setcookie('stanford_guides_keyword', '', time() + (60 * 60 * 24 * 30 * 12), '/');
+  setcookie('stanford_guides_topic', 'All', time() + (60 * 60 * 24 * 30 * 12), '/');
+  //session_destroy();
   drupal_goto('<front>');
+}
+
+/**
+* Implements hook_page_build().
+*/
+function stanford_guides_search_page_build(&$page) {
+  if ($_GET['q'] == 'guides') {
+    setcookie('stanford_guides_keyword', '', time() + (60 * 60 * 24 * 30 * 12), '/');
+    setcookie('stanford_guides_topic', 'All', time() + (60 * 60 * 24 * 30 * 12), '/');
+  }
 }
