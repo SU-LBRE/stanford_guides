@@ -106,8 +106,6 @@ function stanford_guides_search_user_logout($account) {
   //variable_set('stanford_guides_topic', 'All');
   setcookie('stanford_guides_keyword', '', time() + (60 * 60 * 24 * 30 * 12), '/');
   setcookie('stanford_guides_topic', 'All', time() + (60 * 60 * 24 * 30 * 12), '/');
-  //session_destroy();
-  drupal_goto('<front>');
 }
 
 /**
